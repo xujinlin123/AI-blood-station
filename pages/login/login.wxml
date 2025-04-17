@@ -1,0 +1,69 @@
+<!--login.wxml-->
+<view class="page-container">
+ <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/background.png" class="page-background" mode="aspectFill"></image>
+  
+  <view class="content-area">
+    <!-- 标题 -->
+    <view class="platform-title">献血 e 站</view>
+     <view class="container" bindtap="onTapPage">
+      <view class="header">
+        <view class="title-container">
+          <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/logo.png" class="title-bg"></image>
+          <text class="title">授权登录</text>
+        </view>
+      </view>
+      <view class="form">
+        <!-- 输入框 -->
+        <view class="input-container">
+          <text class="input-label">登录身份</text>
+          <view class="custom-picker">
+             <!-- 打开身份选择框并进行身份选择 -->
+            <view class="picker-selected" catchtap="toggleIdentityDropdown">
+              <text>{{selectedIdentity}}</text>
+              <view class="dropdown-arrow">▼</view>
+            </view>
+          </view>
+        </view>
+        <view class="input-container">
+          <text class="input-label">账号</text>
+          <input type="text" placeholder="请输入登录手机号" class="input-field" bindinput="onPhoneNumberInput"/>
+        </view>
+       
+        <view class="input-container">
+            <text class="input-label">密码</text>
+            <input type="{{passwordVisible ? 'text' : 'password'}}" 
+             placeholder="请输入密码" 
+             class="input-field" 
+             bindinput="onPasswordInput"/>
+             <!-- 密码显示和隐藏 -->
+            <view class="toggle-password" bindtap="togglePasswordVisibility">
+            <image src="{{passwordVisible ? 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/eye-open.jpg' : 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/eye-close.jpg'}}" 
+           class="password-icon"/>
+            </view>
+        </view>
+      </view>
+      <view class="agreement">
+        <checkbox class="checkbox" bindtap="onAgreementChange"/>
+        <text>我已阅读并同意</text>
+        <text class="protocol-link" bindtap="navigateToUserService">《用户服务协议》</text>
+        <text>和</text>
+        <text class="protocol-link" bindtap="navigateToPrivacyPolicy">《隐私协议》</text>
+      </view>
+      <view class="login-btn" bindtap="onLoginTap">
+        <view class="bt">登录</view>
+      </view>
+      <view class="footer">
+        <text class="link" bindtap="navigateToRegister">未注册？点击注册</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 身份选择框 -->
+ <!-- style用于定位 -->
+<view class="dropdown-menu" wx:if="{{showIdentityDropdown}}" style="{{dropdownStyle}}">
+  <!-- 通过循环键值对显示身份选项 -->
+  <view class="dropdown-item" wx:for="{{identityOptions}}" wx:key="index" 
+        data-index="{{index}}" catchtap="selectIdentity" hover-class="dropdown-item-hover">
+    {{item}}
+  </view>
+</view>

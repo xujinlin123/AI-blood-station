@@ -1,0 +1,225 @@
+page {
+    height: 100%;
+    overflow: hidden;
+  } 
+.page-container {
+    position: relative; /*相对位置*/
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+  }
+  
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+  }
+  
+.content-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90rpx; 
+    box-sizing: border-box;
+  }
+  
+.platform-title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 20rpx 0;
+    margin-bottom: 30rpx;
+    z-index: 1;
+  }
+  
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 92%;
+    height: 90%;
+    background-color: white;
+    border-radius: 13px;
+    padding: 30rpx 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  
+.header {
+    margin-top: 60px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+.title-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+.title-bg {
+    width: 120px;
+    height: 300rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  
+.title {
+    position: relative;
+    color: #333;
+    font-size: 24px;
+    white-space: nowrap;
+    z-index: 1;
+    padding: 0 20rpx;
+  }
+  
+.form {
+    position: relative;
+    width: 80%;
+    margin-top: -100px;
+    margin-bottom: 0px;
+  }
+  
+.input-container {
+    display: flex;
+    border: 1px solid #ff6f61;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+.toggle-password {
+    width: 70rpx;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10rpx;
+    /* background-color: cornflowerblue; */
+}
+.password-icon {
+    width: 35rpx;
+    height: 35rpx;
+}
+ 
+.custom-picker {
+    position: relative;
+    flex: 1;
+    height: 100%;
+  }
+  
+.picker-selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+.dropdown-arrow {
+    color: #999;
+    font-size: 35rpx;
+    transition: transform 0.3s;
+  }
+  
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-height: 300rpx;
+    overflow-y: auto;
+  }
+  
+.dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+  }
+  
+.dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+.dropdown-item:hover, .dropdown-item:active {
+    background-color: grey;
+  }
+.input-label {
+    color: #000;
+    padding: 10px 15px;
+    width: 100rpx;
+    text-align: justify;
+    background-color: #ff6f61;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: horizontal-tb;
+    white-space: nowrap;
+  }
+  
+.input-field {
+    flex: 1;
+    padding: 10px;
+    border: none;
+  }
+  
+.picker-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+.agreement {
+    position: relative;
+    margin-top: -140px;
+    font-size: 11px;
+    color: #666;
+  }
+  
+.protocol-link {
+    color: #003399;
+    text-decoration: unset;
+  }
+  
+.checkbox {
+    margin-right: 4rpx;
+  }
+  
+.register-btn {
+    position: relative;
+    margin-bottom: 150px;
+    margin-top: -120px;
+    text-align: center;
+  }
+  
+.bt { 
+    margin: 0 auto;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 7px;
+    background-color: #ff6f61;
+    color: white;
+  }
+  

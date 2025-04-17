@@ -1,0 +1,600 @@
+/* 页面基础样式，确保页面占满全高并防止滚动条出现 */
+page {
+    height: 100%;
+    overflow: hidden;
+}
+  
+/* 页面容器，设置为相对定位，占满全屏高度，内容居中对齐 */
+.page-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+  
+/* 页面背景，固定定位于页面顶部左侧，占满全屏，位于最底层（z-index为-2） */
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+  
+/* 内容区域，占满宽高，使用弹性布局垂直排列并居中，顶部留出90rpx空间，使用border-box确保padding不影响总宽高 */
+.content-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90rpx;
+    box-sizing: border-box;
+}
+  
+/* 平台标题样式，占满宽度并居中，设置字体大小、粗细和颜色，上下padding为20rpx，底部外边距为30rpx，确保在顶层显示 */
+.platform-title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 20rpx 0;
+    margin-bottom: 30rpx;
+    z-index: 1;
+}
+  
+/* 功能选择栏，使用弹性布局居中对齐，宽度为40%，浅灰背景色，圆角边框，底部外边距5rpx，相对定位并向左偏移220px */
+.feature-selector {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 10rpx;
+    margin-bottom: 5rpx;
+    overflow: hidden;
+    position: relative;
+    margin-left: -220px;
+}
+  
+/* 功能选项，占满剩余空间，固定宽度10px，文本居中，上下padding为20rpx，设置字体大小和颜色，添加过渡效果 */
+.feature-item {
+    flex: 1;
+    width: 10px;
+    text-align: center;
+    padding: 20rpx 0;
+    font-size: 28rpx;
+    color: #666;
+    transition: all 0.3s;
+}
+  
+/* 激活状态的功能选项，红色背景，白色字体并加粗 */
+.feature-item.active {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+}
+  
+/* 内容展示框，宽度92%，占满剩余高度，允许垂直滚动，半透明白色背景，圆角，内边距20rpx，阴影效果，底部外边距5px，内容居中 */
+.content-display {
+    width: 92%;
+    flex: 1;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20rpx;
+    padding: 20rpx;
+    box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    align-items: center;
+}
+  
+/* 科普发布卡片，白色背景，圆角，内边距20rpx，底部外边距30rpx，轻微阴影效果 */
+.science-post {
+    background-color: white;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+  
+/* 作者信息区域，弹性布局水平排列并垂直居中，底部外边距20rpx */
+.author-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+  
+/* 作者头像，固定宽高80rpx，圆形，右侧外边距20rpx */
+.author-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+  
+/* 作者名称，字体大小28rpx，加粗，深灰色 */
+.author-name {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #333;
+}
+  
+/* 作者职称，字体大小24rpx，浅灰色 */
+.author-title {
+    font-size: 24rpx;
+    color: #999;
+}
+  
+/* 帖子内容容器，相对定位 */
+.post-content {
+    position: relative;
+}
+  
+/* 帖子标题，字体大小32rpx，加粗，底部外边距15rpx，深灰色 */
+.post-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-bottom: 15rpx;
+    color: #333;
+}
+  
+/* 帖子正文，字体大小28rpx，中灰色，行高1.6，底部外边距30rpx */
+.post-text {
+    font-size: 28rpx;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30rpx;
+}
+  
+/* 互动按钮区域，弹性布局靠右对齐并垂直居中 */
+.interaction-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+  
+/* 点赞和收藏按钮共有样式，弹性布局垂直居中，左侧外边距30rpx */
+.like-button, .favorite-button {
+    display: flex;
+    align-items: center;
+    margin-left: 30rpx;
+}
+  
+/* 点赞和收藏按钮图标，固定宽高40rpx，右侧外边距10rpx */
+.like-button image, .favorite-button image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 10rpx;
+}
+  
+/* 点赞按钮文本，字体大小24rpx，浅灰色 */
+.like-button text {
+    font-size: 24rpx;
+    color: #999;
+}
+  
+/* AI问答区域的头部标题栏，弹性布局两端对齐并垂直居中，内边距20rpx，半透明粉色背景，底部边框，圆角 */
+.ai-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    background-color: rgba(255, 192, 203, 0.432);
+    border-bottom: 1px solid #ddd;
+    border-radius: 15rpx;
+}
+  
+/* AI标题，字体大小36rpx，加粗，文本居中，占满剩余空间 */
+.ai-title {
+    font-size: 36rpx;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+}
+  
+/* 历史记录图标，固定宽高70rpx */
+.history-icon {
+    width: 70rpx;
+    height: 70rpx;
+}
+  
+/* 历史记录弹窗，固定定位占满全屏，半透明黑色背景，弹性布局垂直排列并居中，确保在最上层(z-index: 1000) */
+.history-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+  
+/* 历史记录容器，宽度80%，固定高度800rpx，白色背景，圆角，隐藏溢出内容，弹性布局垂直排列 */
+.history-container {
+    width: 80%;
+    height: 800rpx;
+    background: white;
+    border-radius: 20rpx;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+  
+/* 历史记录头部，弹性布局两端对齐并垂直居中，内边距20rpx，底部边框，浅灰背景色 */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    border-bottom: 1px solid #ddd;
+    background-color: rgba(255, 192, 203, 0.432);
+}
+  
+/* 历史记录标题，字体大小32rpx，加粗 */
+.history-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    position: relative;
+    margin: auto;
+}
+  
+/* 关闭图标，固定宽高40rpx，内边距10rpx */
+.close-icon {
+    width: 40rpx;
+    height: 40rpx;
+    padding: 10rpx;
+}
+  
+/* 历史记录列表，占满剩余空间，高度为容器高度减去头部高度，允许垂直滚动 */
+.history-list {
+    flex: 1;
+    height: calc(100% - 80rpx);
+    overflow-y: auto;
+}
+  
+/* 历史记录项，弹性布局两端对齐，内边距20rpx，底部边框 */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20rpx;
+    border-bottom: 1px solid black;
+    background-color: #fff;
+    border-radius: 10px;
+}
+/* 子容器，用于点击加载历史对话 */
+.item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff; /* 设置初始背景 */
+    transition: background 0.5s;
+}
+
+/* 渐变点击效果 */
+.item-content-hover {
+    background: rgba(255, 192, 203, 0.432)
+}
+  
+/* 历史记录项激活状态，背景色变为更浅的灰色 */
+/* .history-item:active {
+    background-color: #f0f0f0;
+} */
+  
+/* 历史聊天标题，字体大小28rpx，深灰色，最大宽度70%，溢出文本显示省略号并不换行 */
+.history-chat-title {
+    font-size: 28rpx;
+    color: #333;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+  
+/* 历史聊天日期，字体大小24rpx，浅灰色 */
+.history-chat-date {
+    font-size: 24rpx;
+    color: #999;
+}
+  
+/* 空历史记录提示，内边距40rpx，文本居中，浅灰色 */
+.empty-history {
+    padding: 40rpx;
+    text-align: center;
+    color: #999;
+}
+  
+/* 删除图标，固定宽高40rpx，内边距10rpx */
+.delete-icon {
+    width: 40rpx;
+    height: 40rpx;
+    padding: 10rpx;
+}
+  
+/* 问答历史记录展示区域，高度100vh但最大不超过880rpx，允许垂直滚动，内边距20rpx，浅灰背景色 */
+.qa-history {
+    height: 100vh;
+    max-height: 880rpx;
+    overflow-y: auto;
+    padding: 20rpx;
+    background-color: #f5f5f5;
+}
+  
+/* 问答项，弹性布局水平排列并顶部对齐，底部外边距20rpx */
+.qa-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20rpx;
+}
+  
+/* 问答头像，固定宽高80rpx，圆形，左右外边距10rpx */
+.qa-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin: 0 10rpx;
+}
+  
+/* 问答内容，最大宽度70%，内边距20rpx，圆角，自动换行，行高1.5 */
+.qa-content {
+    max-width: 70%;
+    padding: 20rpx;
+    border-radius: 10rpx;
+    word-break: break-word;
+    line-height: 1.5;
+}
+
+/* 为图片附件添加样式，使其展示区域合适 */
+.qa-attachment {
+    max-width: 100%;
+    max-height: 300rpx;
+    width: auto;
+    height: auto;
+    position: relative;
+    display: block;
+    margin-top: 10rpx;
+    border-radius: 10rpx;
+}
+
+/* 用户提问项，弹性布局反向排列（头像在右侧） */
+.user-question {
+    flex-direction: row-reverse;
+}
+  
+/* 用户提问内容，蓝色背景，白色文字，文本右对齐 */
+.user-question .qa-content {
+    background-color: #0084ff;
+    color: #fff;
+    text-align: right;
+}
+  
+/* AI回答内容，浅灰背景，深灰文字 */
+.ai-answer .qa-content {
+    background-color: #e6e6e6;
+    color: #333;
+}
+  
+/* 问题输入区域，弹性布局水平排列并垂直居中，内边距20rpx，白色背景，相对定位，顶部外边距5px，带边框和圆角 */
+.question-input-area {
+    display: flex;
+    align-items: center;
+    padding: 20rpx;
+    background-color: #ffffff;
+    position: relative;
+    margin-top: 5px;
+    border: 1rpx solid #ccc;
+    border-radius: 15rpx;
+}
+  
+/* 问题输入框，占满剩余空间，无边框，内边距10rpx，字体大小28rpx */
+.question-input {
+    flex: 1;
+    border: none;
+    padding: 10rpx;
+    font-size: 28rpx;
+}
+  
+/* 输入框图标容器，弹性布局水平排列，元素间距20rpx */
+.input-icons {
+    display: flex;
+    gap: 20rpx;
+}
+  
+/* 单个图标，固定宽高50rpx */
+.icon {
+    width: 50rpx;
+    height: 50rpx;
+}
+/* 外层容器，便于对图片进行绝对定位 */
+.send-box-container {
+    position: relative;
+  }
+  
+  /* 附件图片预览容器，绝对定位在发送框外的左上角 */
+  .attached-image-preview {
+    position: absolute;
+    top: -80rpx;    /* 根据实际情况调整，保证紧贴发送框 */
+    left: 10rpx;   /* 根据实际情况调整 */
+    width: 80rpx;
+    height: 80rpx;
+    z-index: 10;
+  }
+  
+  /* 附件图片，显示原始内容 */
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* 返回图标，位于图片左上角 */
+  .dele-icon {
+    position: absolute;
+    top: -7rpx;    /* 根据需要微调 */
+    right: -30rpx;
+    width: 30rpx;
+    height: 30rpx;
+    z-index: 11;
+  }
+  
+  /* 图片预览弹窗 */
+  .preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  /* 弹窗中放大的图片 */
+  .modal-image {
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  /* 弹窗右上角的关闭按钮 */
+  .close-image-icon {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    width: 50rpx;
+    height: 50rpx;
+    z-index: 101;
+  }
+  /* 文档附件预览容器，绝对定位在发送框上方 */
+.attached-doc-preview {
+    position: absolute;
+    top: -80rpx;    /* 根据实际情况调整 */
+    left: 100rpx;   /* 与图片附件错开位置 */
+    width: 150rpx;
+    height: 60rpx;
+    background: #fff;
+    border: 1rpx solid #ccc;
+    border-radius: 10rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rpx;
+    z-index: 10;
+  }
+  
+  /* 文档信息样式 */
+  .doc-info {
+    flex: 1;
+    text-align: center;
+  }
+  .doc-name {
+    font-size: 26rpx;
+    color: #333;
+  }
+  
+  /* 文档附件删除图标 */
+  .doc-delete-icon {
+    position: absolute;
+    top: -7rpx;
+    right: -7rpx;
+    width: 30rpx;
+    height: 30rpx;
+    z-index: 11;
+  }
+  
+  
+
+/* 加载动画 */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+}
+.dot {
+    width: 10rpx;
+    height: 10rpx;
+    margin-right: 5rpx;
+    background-color: #999;
+    border-radius: 50%;
+    animation: blink 1.4s infinite;
+}
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+@keyframes blink {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* 附件功能 */
+.attachment-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+.attachment-container {
+    position: relative; /* 为绝对定位的关闭按钮提供定位参考 */
+    width: 70%;
+    height: 300px;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+}
+.close-button {
+    position: absolute;
+    top: -55rpx;   /* 调整使按钮贴着容器的右上角外侧 */
+    right: -5rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+.attachment-option {
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15rpx 0;
+    border-bottom: 1rpx solid #bbb;
+    margin-bottom: 5rpx;
+    background-color: #fff;
+    border-radius: 15rpx ;
+    transition: background 0.1s;
+}
+.attachment-option:last-child {
+    border-bottom: none;
+}
+/* 渐变点击效果 */
+.attachment-option-hover {
+    background: rgba(255, 192, 203, 0.432)
+}
+.attachment-icon {
+    width: 50px;
+    height: 50px;
+}
+
+/* 显示是否添加图片附件 */
+.attached-indicator {
+    position: absolute;
+    top: 10rpx;
+    left: 10rpx;
+    z-index: 100;
+}
+.attached-icon {
+    width: 50rpx;
+    height: 50rpx;
+}

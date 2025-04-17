@@ -1,0 +1,118 @@
+/**index.wxss**/
+page {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+.page-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+  }
+/*页面背景图*/  
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+  }
+/*内容区域*/  
+.content-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90rpx; /* Adjust based on your navigation bar height */
+    box-sizing: border-box;
+  }
+/*页面标题*/  
+.platform-title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 20rpx 0;
+    margin-bottom: 30rpx;
+    z-index: 1;
+  }
+/*主容器*/  
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 92%;
+    height: 90%;
+    background-color: white;
+    border-radius: 13px;
+    padding: 30rpx 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+/*logo头部*/  
+.header {
+    margin-top: 60px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+.title-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+/*头部背景图标*/  
+.title-bg {
+    width: 120px;
+    height: 300rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  
+.title {
+    position: relative;
+    color: #333;
+    font-size: 24px;
+    white-space: nowrap;
+    z-index: 1;
+    padding: 0 20rpx;
+  }
+.content{
+    position: relative;
+    margin-bottom: 295px;
+    width: 88%;
+    text-align: center;
+} 
+/* 返回按钮 */
+.back-button {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* 返回图标 */
+.back-icon {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+
+  

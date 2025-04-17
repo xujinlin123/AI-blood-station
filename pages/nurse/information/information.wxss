@@ -1,0 +1,666 @@
+/* pages/nurse/information/information.wxss */
+/* 设置页面的高度为100%，并隐藏滚动条 */
+page {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 页面主容器，确保全屏显示，并居中对齐内容 */
+.page-container1 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* 固定背景图片，使其覆盖整个页面 */
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* 让背景层级最低 */
+}
+
+/* 内容区域样式，纵向排列，并设置顶部内边距 */
+.content-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90rpx;
+    box-sizing: border-box;
+}
+
+/* 平台标题样式，居中显示 */
+.platform-title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 20rpx 0;
+    margin-bottom: 30rpx;
+    z-index: 1;
+}
+
+/* 轮播图样式 */
+.banner-swiper {
+    width: 92%;
+    height: 390rpx;
+    border-radius: 20rpx;
+    overflow: hidden;
+    margin-bottom: 30rpx;
+}
+
+/* 轮播图图片填充整个容器 */
+.banner-image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 搜索框样式 */
+.search-container {
+    width: 84%;
+    height: 80rpx;
+    background-color: white;
+    border-radius: 15rpx;
+    display: flex;
+    align-items: center;
+    padding: 0 30rpx;
+    box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+    margin-top: 10px;
+}
+
+
+/* 功能图标区域，水平排列 */
+.icon-container {
+    width: 92%;
+    display: flex !important;
+    justify-content: space-around;
+    margin-bottom: 30rpx;
+}
+
+/* 单个功能图标项，纵向排列 */
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 功能图标图片样式 */
+.function-icon {
+    width: 120rpx;
+    height: 120rpx;
+    margin-bottom: 10rpx;
+}
+
+/* 图标文本样式 */
+.icon-text {
+    font-size: 11px;
+    color: #333;
+}
+
+/* 献血活动发布栏容器 */
+.activity-container {
+    width: 91%;
+    height: 63%;
+    border-radius: 15rpx;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden; /* 确保背景图片不超出边界 */
+    /* overflow-y: auto; 垂直方向可滚动 */
+}
+.header-content
+{
+  width: 100%;
+  height: 100%;  
+  position: relative;
+  z-index: 1; 
+}
+/* 活动标题，居中显示 */
+.activity-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    padding: 15rpx 0;
+    border-bottom: 1rpx solid #eee;
+    margin-bottom: 20rpx;
+}
+
+/* 活动背景图片，填充整个容器 */
+.background-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* 活动内容区域，确保在背景图片上方 */
+.activity-content {
+    /* position: relative;
+    z-index: 1; */
+    padding: 10rpx;
+}
+
+
+/* 活动列表样式 */
+.activity-list {
+    width: 100%;
+}
+
+/* 单个活动项样式 */
+.activity-item {
+    display: flex;
+    padding: 20rpx 0;
+    border-bottom: 1rpx solid #eee;
+}
+
+/* 活动图片样式 */
+.activity-image {
+    width: 280rpx;
+    height: 160rpx;
+    border-radius: 10rpx;
+    margin-right: 20rpx;
+}
+
+/* 活动信息区域，包含标题、参与人数等 */
+.activity-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160rpx;
+    position: relative;
+}
+
+/* 活动标题样式 */
+.activity-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10rpx;
+}
+
+/* 活动参与人数样式 */
+.activity-participants {
+    font-size: 12px;
+    color: #888;
+}
+
+/* 报名按钮样式，固定在右下角 */
+.signup-button {
+    width: 100rpx !important;
+    height: 50rpx;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 12px;
+    border-radius: 18rpx;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: all 0.3s ease;
+}
+/* 已报名状态 */
+.signup-button.signed {
+  background: rgba(7, 193, 96, 0.5);
+  opacity: 0.8;
+}
+/*第二个页面*/
+
+/* 页面整体样式 */
+.page-container2 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* 背景图片 */
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+/* 内容区域 */
+.content-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90rpx;
+    box-sizing: border-box;
+}
+
+
+
+/* 主容器 */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 92%;
+    height: 90%;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 30rpx 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+} 
+/* 背景图片 */
+.container-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 让它处于最底层 */
+    border-radius: 13px;
+}
+
+/* 返回按钮 + 标题 */
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20rpx;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    height: 70rpx;
+}
+
+.back-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 20rpx;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+.header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+    position: relative;
+    top: -15rpx;
+}
+
+/* 信息列表 */
+.info-list {
+    width: 90%;
+    height: 80%;
+    position: relative;
+    margin-top: 20rpx;
+    margin-bottom: 50px;
+}
+
+/* 单个信息项 */
+.info-item {
+    background: #f9f9f9;
+    padding: 20rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 10rpx;
+    margin-bottom: 15rpx;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* 让人数标注可以绝对定位 */
+}
+
+/* 标题样式 */
+.info-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #d9534f;
+    margin-bottom: 10rpx;
+    display: block;
+}
+
+/* 详情项样式 */
+.info-detail {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5rpx;
+    display: block;
+}
+
+/* 人数标注 */
+.recruit-status {
+    position: absolute;
+    bottom: 10rpx;
+    right: 15rpx;
+    font-size: 14px;
+    color: #31708f;
+    background: #d9edf7;
+    padding: 5rpx 10rpx;
+    border-radius: 5rpx;
+}
+
+/* 招募完毕样式 */
+.recruit-full {
+    background: #d9534f;
+    color: white;
+}
+
+
+/* 底部招募按钮 */
+.recruit-button {
+    position: absolute;
+    bottom: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recruit-icon {
+    width: 100rpx;
+    height: 100rpx;
+    cursor: pointer;
+}
+.recruit-text{
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    top: -20rpx;
+}
+/* 弹窗样式 */
+.popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20rpx;
+    z-index: 1000;
+}
+
+/* 退出按钮 */
+.close-icon {
+    position: absolute;
+    top: 15rpx;
+    right: 15rpx;
+    width: 40rpx;
+    height: 40rpx;
+    cursor: pointer;
+}
+
+/* 弹窗标题 */
+.popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* 表单项 */
+.form-group {
+    width: 90%;
+    margin-bottom: 20rpx;
+    display: flex;
+    align-items: center;
+}
+
+.form-label {
+    width: 30%;
+    height: 20px;
+    background: #ff6f61;
+    color: white;
+    font-size: 14px;
+    padding: 10rpx;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 15rpx;
+}
+
+.input-box {
+  flex: 1;
+  height: 20px;
+  padding: 10rpx;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background: white;
+  margin-left: -10rpx;
+  white-space: nowrap; /* 禁止文字换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略号 */
+}
+.picker {
+    flex: 1;
+    height: 20px;
+    padding: 10rpx;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background: white;
+    margin-left: -10rpx;
+}
+
+/* 确认发布按钮 */
+.confirm-btn {
+    width: 40%;
+    background: #ff6f61;
+    color: white;
+    font-size: 16px;
+    padding: 15rpx;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 20rpx;
+    margin: auto;
+}
+
+/* 献血者信息页专用样式 */
+.page-container3 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.donor-list {
+  width: 80%;
+  padding: 20rpx;
+  position: relative;
+  z-index: 1;
+  height: calc(100vh - 240rpx); /* 视窗高度减去标题和页脚 */
+  overflow-y: auto; /* 启用垂直滚动 */
+}
+
+.donor-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.header-row {
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.col-name {
+  flex: 1;
+  padding-left: 20rpx;
+}
+
+.col-blood {
+  flex: 1;
+  text-align: center;
+}
+
+.col-age {
+  flex: 1;
+  text-align: center;
+}
+
+.col-action {
+  flex: 1;
+  color: #07c160;
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* 查看活动专用样式 */
+.page-container4 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* 改为纵向布局 */
+    justify-content: flex-start; /* 顶部对齐 */
+  }
+  
+  /* 板块标题 */
+  .section{
+    background-color: rgb(247, 153, 153);
+  }
+  
+  
+  .title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  
+  /* 问答项样式 */
+  .qa-item {
+    margin: 1px;
+    padding: 15px;
+    height: 15rpx;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .question {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+  }
+  
+  .q-mark {
+    color: #e54d42;
+    margin-right: 8px;
+  }
+  
+  .arrow {
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+  }
+  
+  .answer {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  /* 答案内容区域 */
+  .answer-content {
+    font-size: 16px;
+    padding: 20rpx;
+    line-height: 1.2;
+    color: #333;
+    border-radius: 8rpx;
+    margin-top: 0;
+    position: relative;
+    top: -900rpx;
+    z-index: 1000;
+  }
+  
+  .sub-answer {
+    margin-top: 8px;
+    color: #999;
+    font-size: 12px;
+  }
+  
+  /* 活动列表样式 */
+  .activity-item {
+    padding: 12px;
+    margin: 10px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .date {
+    color: #e54d42;
+    font-weight: bold;
+    flex: 1;
+  }
+  
+  .location {
+    flex: 2;
+    color: #666;
+  }
+  
+  .status {
+    flex: 1;
+    text-align: right;
+    color: #09bb07;
+  }
+  
+  .nav-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    height: 20rpx;
+  }
+  
+  .nav-arrow{
+    display: flex;
+  }
+  
+  .arrow-text{
+    font-size: 25rpx;
+    align-items: center;
+    font-weight: 600;
+  }

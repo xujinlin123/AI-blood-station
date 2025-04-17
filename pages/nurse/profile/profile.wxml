@@ -1,0 +1,338 @@
+<!--pages/nurse/profile/profile.wxml-->
+<view class="page-container" hidden="{{!isPageReady || identitySelected !== '兼职护士'}}">
+  <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/background.png" class="page-background" mode="aspectFill"></image>
+  <view class="content-area">
+    <view class="platform-title">献血 e 站</view>
+    <!-- 第一部分个人信息 -->
+    <view class="user-info-card">
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/我的背景3.png" class="user-card-bg" mode="aspectFill"></image>
+      <view class="user-info-content">
+        <view class="avatar-container">
+          <image src="{{userAvatar || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-avatar.png'}}" class="avatar" mode="aspectFill"></image>
+        </view>
+        <view class="user-details">
+          <view class="user-name-container">
+            <text class="user-name">{{userName || '用户名'}}</text>
+            <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/修改昵称.png" class="edit-icon" bindtap="showNameEditDialog"></image>
+          </view>
+          <text class="user-id">用户ID: {{userId || '123456'}}</text>
+          <text class="user-role">登录身份:{{identitySelected}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 第二部分用户管理业务 -->
+    <view class="management-card">
+      <view class="section-title">护士证</view>
+      <view class="management-icons">
+        <view class="user-photo-container">
+          <image src="{{userPhoto || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-nurse.png'}}" class="user-photo" mode="aspectFill"/>
+        </view>
+        <view class="user-details">
+          <view class="icon-item">
+            <text class="detail-label">姓名：</text>
+            <text class="detail-value">{{userName || '陈小云'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">性别：</text>
+            <text class="detail-value">{{userGender || '女'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">身份证号：</text>
+            <text class="detail-value">{{userID || '440xxxxxxxxxxxxxxx'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">护士证编号：</text>
+            <text class="detail-value">{{userCertNo || 'xxxx'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">所属医院：</text>
+            <text class="detail-value">{{hospital || '广东省中医院'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">所属科室：</text>
+            <text class="detail-value">{{department || '检验科'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 第三部分其他信息 -->
+    <view class="other-info-card">
+      <view class="info-item" bindtap="navigateToMessages">
+        <text class="item-text">消息管理</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="navigateToFeedback">
+        <text class="item-text">用户意见反馈</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="logout">
+        <text class="item-text">退出登录</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="checkUpdate">
+        <text class="item-text">版本更新</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户名字编辑框 -->
+  <view class="dialog-mask" wx:if="{{showNameDialog}}" >
+    <view class="dialog-container" catchtap="preventBubble">
+      <view class="dialog-header">
+        <text class="dialog-title">请输入你的新名字</text>
+        <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="close-icon" bindtap="hideNameEditDialog"></image>
+      </view>
+      <input class="name-input" value="{{newName}}" bindinput="onNameInput" placeholder="请输入新名字"/>
+      <button class="confirm-btn" bindtap="confirmNameChange">确定</button>
+    </view>
+  </view>
+</view>
+<!-- 管理员页面 -->
+<view class="page-container" hidden="{{!isPageReady || identitySelected !== '管理员'}}">
+  <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/background.png" class="page-background" mode="aspectFill"></image>
+  <view class="content-area">
+    <view class="platform-title">献血 e 站</view>
+    <!-- 用户信息 -->
+    <view class="user-info-card">
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/我的背景3.png" class="user-card-bg" mode="aspectFill"></image>
+      <view class="user-info-content">
+        <view class="avatar-container">
+          <image src="{{userAvatar || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-avatar.png'}}" class="avatar" mode="aspectFill"></image>
+        </view>
+        <view class="user-details">
+          <view class="user-name-container">
+            <text class="user-name">{{userName || '用户名'}}</text>
+            <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/修改昵称.png" class="edit-icon" bindtap="showNameEditDialog"></image>
+          </view>
+          <text class="user-id">ID: {{userId || '123456'}}</text>
+          <text class="user-role">身份:{{identitySelected}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 其他信息 -->
+    <view class="other-info-card">
+      <view class="info-item" bindtap="navigateToMessages">
+        <text class="item-text">消息管理</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="navigateToFeedback">
+        <text class="item-text">用户意见反馈</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="logout">
+        <text class="item-text">退出登录</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="checkUpdate">
+        <text class="item-text">版本更新</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 修改名称 -->
+  <view class="dialog-mask" wx:if="{{showNameDialog}}" bindtap="hideNameEditDialog">
+    <view class="dialog-container" catchtap="preventBubble">
+      <view class="dialog-header">
+        <text class="dialog-title">请输入你的新名字</text>
+        <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="close-icon" bindtap="hideNameEditDialog"></image>
+      </view>
+      <input class="name-input" value="{{newName}}" bindinput="onNameInput" placeholder="请输入新名字"/>
+      <button class="confirm-btn" bindtap="confirmNameChange">确定</button>
+    </view>
+  </view>
+</view>
+
+<!-- 研究所专家页面 -->
+<view class="page-container" hidden="{{!isPageReady || identitySelected !== '研究所专家'}}">
+  <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/background.png" class="page-background" mode="aspectFill"></image>
+  <view class="content-area">
+    <view class="platform-title">献血 e 站</view>
+    <!-- 用户信息 -->
+    <view class="user-info-card">
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/我的背景3.png" class="user-card-bg" mode="aspectFill"></image>
+      <view class="user-info-content">
+        <view class="avatar-container">
+          <image src="{{userAvatar || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-avatar.png'}}" class="avatar" mode="aspectFill"></image>
+        </view>
+        <view class="user-details">
+          <view class="user-name-container">
+            <text class="user-name">{{userName || '用户名'}}</text>
+            <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/修改昵称.png" class="edit-icon" bindtap="showNameEditDialog"></image>
+          </view>
+          <text class="user-id">用户ID: {{userId || '123456'}}</text>
+          <text class="user-role">登录身份:{{identitySelected}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 个人中心-->
+    <view class="management-card">
+      <view class="section-title">医师证</view>
+      <view class="management-icons">
+        <view class="user-photo-container">
+          <image src="{{userPhoto || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-nurse.png'}}" class="user-photo" mode="aspectFill"/>
+        </view>
+        <view class="user-details">
+          <view class="icon-item">
+            <text class="detail-label">姓名：</text>
+            <text class="detail-value">{{userName || '陈小云'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">性别：</text>
+            <text class="detail-value">{{userGender || '女'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">身份证号：</text>
+            <text class="detail-value">{{userID || '440xxxxxxxxxxxxxxx'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">医师证编号：</text>
+            <text class="detail-value">{{userCertNo || 'xxxx'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">所属单位：</text>
+            <text class="detail-value">{{hospital || '广东省中医院'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">所属科室：</text>
+            <text class="detail-value">{{department || '检验科'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 其他信息 -->
+    <view class="other-info-card">
+      <view class="info-item" bindtap="navigateToMessages">
+        <text class="item-text">消息管理</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="navigateToFeedback">
+        <text class="item-text">用户意见反馈</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="logout">
+        <text class="item-text">退出登录</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="checkUpdate">
+        <text class="item-text">版本更新</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 修改名称 -->
+  <view class="dialog-mask" wx:if="{{showNameDialog}}" bindtap="hideNameEditDialog">
+    <view class="dialog-container" catchtap="preventBubble">
+      <view class="dialog-header">
+        <text class="dialog-title">请输入你的新名字</text>
+        <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="close-icon" bindtap="hideNameEditDialog"></image>
+      </view>
+      <input class="name-input" value="{{newName}}" bindinput="onNameInput" placeholder="请输入新名字"/>
+      <button class="confirm-btn" bindtap="confirmNameChange">确定</button>
+    </view>
+  </view>
+</view>
+
+<!-- 献血者页面 -->
+<view class="page-container" hidden="{{!isPageReady || identitySelected !== '献血者'}}">
+  <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/background.png" class="page-background" mode="aspectFill"></image>
+  <view class="content-area">
+    <view class="platform-title">献血 e 站</view>
+    <!-- 用户信息 -->
+    <view class="user-info-card">
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/我的背景3.png" class="user-card-bg" mode="aspectFill"></image>
+      <view class="user-info-content">
+        <view class="avatar-container">
+          <image src="{{userAvatar || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-avatar.png'}}" class="avatar" mode="aspectFill"></image>
+        </view>
+        <view class="user-details">
+          <view class="user-name-container">
+            <text class="user-name">{{userName || '用户名'}}</text>
+            <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/修改昵称.png" class="edit-icon" bindtap="showNameEditDialog"></image>
+          </view>
+          <text class="user-id">用户ID: {{userId || '123456'}}</text>
+          <text class="user-role">登录身份:{{identitySelected}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 个人中心-->
+    <view class="management-card">
+      <view class="section-title">广州市无偿献血证</view>
+      <view class="management-icons">
+        <view class="user-photo-container">
+          <image src="{{userPhoto || 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/default-nurse.png'}}" class="user-photo" mode="aspectFill"/>
+        </view>
+        <view class="user-details">
+          <view class="icon-item">
+            <text class="detail-label">姓名：</text>
+            <text class="detail-value">{{userName || '陈小云'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">性别：</text>
+            <text class="detail-value">{{userGender || '女'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">血型：</text>
+            <text class="detail-value">{{userBlood || 'Rh阴性'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">身份证号：</text>
+            <text class="detail-value">{{userID || '440xxxxxxxxxxxxxxx'}}</text>
+          </view>
+          <view class="icon-item">
+            <text class="detail-label">发卡年份：</text>
+            <text class="detail-value">{{userYear || '2024'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 其他信息 -->
+    <view class="other-info-card">
+      <view class="info-item" bindtap="navigateToDonationRecords">
+        <text class="item-text">我的献血记录</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="navigateToDonationRecords">
+        <text class="item-text">每月健康问卷</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="navigateToMessages">
+        <text class="item-text">消息管理</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="navigateToFeedback">
+        <text class="item-text">用户意见反馈</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="logout">
+        <text class="item-text">退出登录</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+      <view class="info-item" bindtap="checkUpdate">
+        <text class="item-text">版本更新</text>
+        <image class="arrow-icon" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/进入.png"  mode="widthFix"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 修改名称 -->
+  <view class="dialog-mask" wx:if="{{showNameDialog}}" bindtap="hideNameEditDialog">
+    <view class="dialog-container" catchtap="preventBubble">
+      <view class="dialog-header">
+        <text class="dialog-title">请输入你的新名字</text>
+        <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="close-icon" bindtap="hideNameEditDialog"></image>
+      </view>
+      <input class="name-input" value="{{newName}}" bindinput="onNameInput" placeholder="请输入新名字"/>
+      <button class="confirm-btn" bindtap="confirmNameChange">确定</button>
+    </view>
+  </view>
+</view>

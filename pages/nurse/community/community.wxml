@@ -1,0 +1,185 @@
+<!--pages/nurse/community/community.wxml-->
+<view class="page-container">
+  <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/background.png" class="page-background" mode="aspectFill"></image>
+  
+  <view class="content-area">
+    <view class="platform-title">献血 e 站</view>
+    
+    <!-- 功能选择栏 -->
+    <view class="feature-selector">
+      <view class="feature-item {{activeTab === 'science' ? 'active' : ''}}" bindtap="switchTab" data-tab="science">
+        科普动态
+      </view>
+      <view class="feature-item {{activeTab === 'ai' ? 'active' : ''}}" bindtap="switchTab" data-tab="ai">
+        AI智能问答
+      </view>
+    </view>
+    
+    <!-- 内容展示区域 -->
+    <view class="content-display">
+      <!-- 科普动态框 -->
+      <view class="science-content" wx:if="{{activeTab === 'science'}}">
+        <block wx:for="{{sciencePosts}}" wx:key="id">
+          <view class="science-post">
+            <!-- 作者信息 -->
+            <view class="author-info">
+              <image class="author-avatar" src="{{item.authorAvatar}}"></image>
+              <view class="author-details">
+                <view class="author-name">{{item.authorName}}</view>
+                <view class="author-title">{{item.authorTitle}}</view>
+              </view>
+            </view>
+            
+            <!-- 科普信息 -->
+            <view class="post-content">
+              <view class="post-title">{{item.title}}</view>
+              <view class="post-text">{{item.content}}</view>
+              
+              <!-- 点赞收藏功能 -->
+              <view class="interaction-buttons">
+                <view class="like-button" bindtap="toggleLike" data-id="{{item.id}}">
+                  <image src="{{item.isLiked ? 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/已点赞.png' : 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/未点赞.png'}}"></image>
+                  <text>{{item.likes}}</text>
+                </view>
+                <!-- 切换收藏 -->
+                <view class="favorite-button" bindtap="toggleFavorite" data-id="{{item.id}}">
+                  <image src="{{item.isFavorited ? 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/已收藏.png' : 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/未收藏.png'}}"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      
+      <!-- AI 问答 -->
+      <view class="ai-content" wx:if="{{activeTab === 'ai'}}">
+        <!-- 头部标题栏 -->
+        <view class="ai-header">
+          <text class="ai-title">智能问答</text>
+          <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/历史记录.png" class="history-icon" bindtap="viewHistory"></image>
+        </view>
+
+        <!-- 聊天记录展示 -->
+        <scroll-view class="qa-history" scroll-y="true" scroll-with-animation="true" scroll-top="{{scrollTop}}">
+            <block wx:for="{{qaHistory}}" wx:key="index">
+  <view class="qa-item {{item.role === 'user' ? 'user-question' : 'ai-answer'}}">
+    <image class="qa-avatar" src="{{item.role === 'user' ? 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/头像女孩.png' : 'https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/头像.png'}}"></image>
+    <view class="qa-content">
+      <!-- 如果存在图片附件，则显示图片 -->
+      <block wx:if="{{item.attachment && item.attachment.type === 'image'}}">
+        <image class="qa-attachment" src="{{item.attachment.path}}" mode="widthFix"></image>
+      </block>
+      <!-- 当 AI 正在加载且未开始显示内容时显示加载动画 -->
+      <block wx:if="{{item.role === 'ai' && loading && !item.content}}">
+        <view class="loading-indicator">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </block>
+      <!-- 如果 AI 回复已完成且渲染后的 HTML 存在，则使用 rich-text 渲染 -->
+      <block wx:elif="{{item.role === 'ai' && item.htmlContent}}">
+        <rich-text nodes="{{item.htmlContent}}"></rich-text>
+      </block>
+      <!-- 否则显示 plain text -->
+      <block wx:elif="{{item.content}}">
+        {{item.content}}
+      </block>
+    </view>
+  </view>
+</block>
+
+
+</scroll-view>
+        <!-- 外层容器 -->
+<view class="send-box-container">
+  <!-- 附件图片预览，只有当 attachedImage 存在时显示 -->
+  <view wx:if="{{attachedImage}}" class="attached-image-preview">
+    <!-- 点击图片放大预览 -->
+    <image src="{{attachedImage}}" class="preview-image" bindtap="openPreview" />
+    <!-- 左上角返回图标，点击后删除附件 -->
+    <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="dele-icon" bindtap="removeAttachedImage" />
+  </view>
+  <!-- 文档附件预览 -->
+  <view wx:if="{{attachedDoc}}" class="attached-doc-preview">
+    <!-- 显示文档名称或图标 -->
+    <view class="doc-info">
+      <text class="doc-name">{{attachedDoc.name}}</text>
+    </view>
+    <!-- 右上角删除按钮 -->
+    <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="doc-delete-icon" bindtap="removeAttachedDoc" />
+  </view>
+  <!-- 发送框 -->
+  <view class="question-input-area">
+    <input class="question-input" bindinput="inputQuestion" value="{{currentQuestion}}" placeholder="请输入您的问题"/>
+    <view class="input-icons">
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/加号.png" class="icon" bindtap="newChat"></image>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/链接.png" class="icon" bindtap="addAttachment"></image>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/发送.png" class="icon" bindtap="sendQuestion"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 图片预览弹窗 -->
+<view wx:if="{{showPreviewModal}}" class="preview-modal">
+  <image src="{{attachedImage}}" class="modal-image" />
+  <!-- 弹窗右上角关闭按钮 -->
+  <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="close-image-icon" bindtap="closePreview" />
+</view>
+
+      </view>
+    </view>
+  </view>
+  
+  <!-- 历史记录弹窗 -->
+<view class="history-modal" wx:if="{{showHistoryModal}}">
+  <view class="history-container">
+    <view class="history-header">
+      <text class="history-title">历史对话</text>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" class="close-icon" bindtap="closeHistory"></image>
+    </view>
+    <scroll-view class="history-list" scroll-y="true">
+      <block wx:if="{{historyList.length > 0}}">
+        <view wx:for="{{historyList}}" wx:key="id" class="history-item" >
+          <!-- 点击整个内容加载对话 -->
+          <view class="item-content" bindtap="loadHistoryChat" hover-class="item-content-hover" data-id="{{item.id}}" >
+            <text class="history-chat-title">{{item.title}}</text>
+            <text class="history-chat-date">{{item.date}}</text>
+          </view>
+          <!-- 删除图标，点击后进行删除操作 -->
+          <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/删除.jpg" class="delete-icon" data-id="{{item.id}}" bindtap="deleteHistoryItem" catchtap="deleteHistoryItem"></image>
+        </view>
+      </block>
+      <view wx:else class="empty-history">
+        <text>暂无历史对话</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<!-- 附件选择弹窗 -->
+<view class="attachment-modal" wx:if="{{showAttachmentModal}}">
+  <view class="attachment-container">
+    <!-- 关闭按钮，绝对定位于附件容器的右上角外部 -->
+    <image class="close-button" src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/关闭.png" bindtap="closeAttachmentModal"></image>
+
+    <view class="attachment-option" bindtap="chooseImage" hover-class="attachment-option-hover">
+      <text>选择图片</text>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/照片.jpg" class="attachment-icon"></image>
+    </view>
+    <view class="attachment-option" bindtap="chooseWord" hover-class="attachment-option-hover">
+      <text>选择Word文档</text>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/word文档.jpg" class="attachment-icon"></image>
+    </view>
+    <view class="attachment-option" bindtap="choosePdf" hover-class="attachment-option-hover">
+      <text>选择PDF文档</text>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/pdf文档.jpg" class="attachment-icon"></image>
+    </view>
+    <view class="attachment-option" bindtap="chooseExcel" hover-class="attachment-option-hover">
+      <text>选择Excel表</text>
+      <image src="https://blood-station-1327665268.cos.ap-guangzhou.myqcloud.com/excel表.jpg" class="attachment-icon"></image>
+    </view>
+  </view>
+</view>
+
+
+</view>
